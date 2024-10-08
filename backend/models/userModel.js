@@ -3,6 +3,11 @@ const { sequelize } = require('../config/db');
 
 
 const User = sequelize.define('User', {
+  id:{
+    type: DataTypes.NUMBER,
+    allowNull: true,
+    unique: true
+  },
   name: {
     type: DataTypes.STRING,
     allowNull: false

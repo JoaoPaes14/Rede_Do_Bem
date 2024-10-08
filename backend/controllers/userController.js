@@ -7,11 +7,17 @@ const getUsers = async (req, res) => {
   } catch (error) {
     res.status(500).json({ message: 'Erro ao buscar usuários' });
   }
+  try {
+    const users = await User.findByPk(id);
+    res.json(users);
+  }catch (error){
+    res.status(404).json({mensage: 'Usuario não encontrado'})
+  }
 };
 const createUser = async (req, res) => {
-  const { name, email, password } = req.body;
+  const { name, email, password , id } = req.body;
 
-  if (!name || !email || !password) {
+  if (!name || !email || !password || !id ) {
     return res.status(400).json({ message: 'Por favor, preencha todos os campos' });
   }
 
